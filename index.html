@@ -1,63 +1,157 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Mon Discord</title>
+<title>UNN Roblox Script Server</title>
 
 <style>
 
 body{
-background:#0f0f0f;
-color:white;
-font-family:Arial;
-text-align:center;
 margin:0;
+background:black;
+font-family:monospace;
+color:#ff0000;
+text-align:center;
+overflow:hidden;
 }
 
-.banner{
-width:100%;
-height:250px;
-object-fit:cover;
+/* MATRIX BINARY BACKGROUND */
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
 }
 
-.profile{
-width:120px;
-height:120px;
-border-radius:50%;
-margin-top:-60px;
-border:5px solid #0f0f0f;
+/* NEON TEXT */
+
+h1, p, .desc {
+text-shadow:
+0 0 5px red,
+0 0 10px red,
+0 0 20px red,
+0 0 40px red;
 }
+
+/* GLITCH EFFECT */
+
+.glitch{
+position:relative;
+animation:glitch 3s infinite;
+}
+
+@keyframes glitch{
+0%{transform:translate(0)}
+20%{transform:translate(-2px,2px)}
+40%{transform:translate(-2px,-2px)}
+60%{transform:translate(2px,2px)}
+80%{transform:translate(2px,-2px)}
+100%{transform:translate(0)}
+}
+
+/* BUTTON */
 
 button{
-background:#5865F2;
-color:white;
-border:none;
-padding:15px 30px;
-font-size:18px;
-border-radius:10px;
+margin-top:20px;
+padding:15px 40px;
+font-size:20px;
+background:black;
+border:2px solid red;
+color:red;
 cursor:pointer;
+text-shadow:0 0 10px red;
+box-shadow:0 0 10px red;
+transition:0.3s;
 }
 
 button:hover{
-background:#4752c4;
+background:red;
+color:black;
+box-shadow:0 0 30px red;
+}
+
+/* DESCRIPTION */
+
+.desc{
+margin-top:30px;
+font-size:20px;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<img class="banner" src="https://picsum.photos/1200/300">
+<canvas id="matrix"></canvas>
 
-<img class="profile" src="https://picsum.photos/200">
+<h1 class="glitch">UNN ROBLOX SCRIPT SERVER</h1>
 
-<h1>Mon serveur Discord</h1>
+<p class="glitch">👥 Members : ???</p>
 
-<p>Rejoins la communauté !</p>
+<p class="glitch">👑 Owner : a.i.m_alone</p>
 
-<a href="https://discord.gg/TONLIEN" target="_blank">
-<button>🚀 Rejoindre le Discord</button>
+<p class="glitch">Discord : https://discord.gg/WJgncBtURw</p>
+
+<a href="https://discord.gg/WJgncBtURw" target="_blank">
+<button class="glitch">🚀 REJOIN</button>
 </a>
+
+<div class="desc glitch">
+WE ARE ROBLOX SCRIPT SERVER<br>
+WE CREATE<br>
+WE LEARN<br>
+😈WE ARE HACKER😈
+</div>
+
+<script>
+
+/* MATRIX EFFECT */
+
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters = "01";
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+
+const drops = [];
+
+for(let x = 0; x < columns; x++)
+drops[x] = 1;
+
+function draw(){
+
+ctx.fillStyle = "rgba(0,0,0,0.05)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle = "#ff0000";
+ctx.font = fontSize + "px monospace";
+
+for(let i = 0; i < drops.length; i++){
+
+const text = letters.charAt(Math.floor(Math.random()*letters.length));
+
+ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+
+if(drops[i]*fontSize > canvas.height && Math.random() > 0.975)
+drops[i] = 0;
+
+drops[i]++;
+
+}
+
+}
+
+setInterval(draw,33);
+
+</script>
 
 </body>
 </html>
+```
